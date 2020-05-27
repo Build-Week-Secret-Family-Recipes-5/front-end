@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
@@ -215,3 +216,20 @@ const Image = styled.div`
 // `;
 
 // export default App;
+=======
+import React from 'react';
+import './App.css';
+import HomePage from './homepage';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <HomePage />
+      </header>
+    </div>
+  );
+}
+
+export default App;
+>>>>>>> 8117a2d100dbe06c643647bb816ada14db3dabdf
