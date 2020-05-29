@@ -1,9 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
+import HomePage from "./homepage";
+import NavBar from "./Components/NavBar";
+
 
 function App(prop) {
-  return <div className="App"></div>;
+  return (
+    <div>
+    <NavBar />
+    <HomePage />
+   
+    </div>
+  )
 }
 
 export default App;
