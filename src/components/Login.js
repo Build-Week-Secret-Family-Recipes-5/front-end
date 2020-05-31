@@ -79,12 +79,12 @@ const FormikLoginForm = withFormik({
       .post('/api/auth/login', values)
       .then(res => {
         console.log('Success:', res);
-        setStatus(res.data.user.user_type);
+        setStatus(res.data);
         resetForm();
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('id', res.data.user.id);
+        // localStorage.setItem('id', res.data.id);
         // localStorage.setItem('org_id', res.data.user.org_id);
-        props.history.push('/recipeform');
+        props.history.push('/recipeDashboard');
       })
       .catch(err => {
         console.log('Error:', err.response);

@@ -41,7 +41,7 @@ const SignupForm = ({ errors, touched, values, status }) => {
               placeholder="email address"
               value={values.email}
             />
-            <label className="signup-checkbox-box">
+            {/* <label className="signup-checkbox-box">
               <h4 className="signup-checkbox-title">
                 I agree to all statements in terms of service
               </h4>
@@ -51,7 +51,7 @@ const SignupForm = ({ errors, touched, values, status }) => {
                 name="terms"
                 checked={values.terms}
               />
-            </label>
+            </label> */}
             {/* {values.terms && (
               <Field
                 className="fnu-signup-input"
@@ -95,7 +95,7 @@ const FormikSignupForm = withFormik({
       username: supUsers || '',
       email: '',
       password: '',
-      terms: false,
+      // terms: false,
       
     };
   },
@@ -104,7 +104,7 @@ const FormikSignupForm = withFormik({
     username: Yup.string().required('*Please enter your username!!'),
     email: Yup.string().required('*Please enter your password!!'),
     password: Yup.string().required('*Please enter your email address!!'),
-    terms: Yup.bool(),
+    // terms: Yup.bool(),
   }),
 
   handleSubmit(values, { setStatus, resetForm, props }) {

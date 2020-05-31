@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import '../index.css';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);

@@ -46,9 +46,8 @@ function RecipesDashboard(props) {
   return (
     <div>
       <NavBar />
-      <StyledH1>{`Welcome to your Dashboard, ${props.recipes[0].recipe_name}!`}</StyledH1>
+      <StyledH1>Welcome to your Dashboard</StyledH1>
       <StyledH2>Make changes to your recipes or Add recipes!</StyledH2>
-      {/* <CampaignList /> */}
       {props.userInfoError && <p>Error: {props.userInfoError}</p>}
       {props.isInfoLoading ? (
         <h1>Loading your Dashboard...</h1>
@@ -78,7 +77,6 @@ function mapStateToProps(state) {
   return {
     recipes: state.orgReducer.recipes,
     isInfoLoading: state.orgReducer.isLoading,
-    userInfoError: state.orgaReducer.error,
   };
 }
 

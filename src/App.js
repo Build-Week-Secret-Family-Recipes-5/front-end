@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/" component={HomePage} />
-      <ProtectedRoute path="/recipes" component={RecipesDashboard} />
+      <Route path="/recipeDashboard" component={RecipesDashboard} />
       <Route path="/login" component={Login} />
       <Route path="/signUp" component={SignUp} />
       <ProtectedRoute path="/recipeform" component={RecipeForm} />
