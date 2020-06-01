@@ -9,6 +9,7 @@ import RecipeCard from "./RecipeCard";
 
 const Heading = styled.h1`
   color: #AC3E59;
+  
 `;
 
 function HomePage() {
@@ -36,8 +37,9 @@ function HomePage() {
 
  return (
    <div>
-  <Heading>Secret Recipes</Heading>
-  <SearchForm value={search} onChange={handleChange}/>
+  <center><Heading>Secret Recipes</Heading></center>
+  
+  <center><SearchForm value={search} onChange={handleChange}/></center>
   {result.map(props => {
           return (
           <RecipeCard 
@@ -45,7 +47,7 @@ function HomePage() {
           ingredients={props.ingredient}
           instructions={props.instructions}
           source={props.source}
-          category={props.categories}
+          category={props.category}
           photo={props.photo}
           />
           )

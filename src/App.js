@@ -12,10 +12,8 @@ function App() {
 const HomeDec = styled.div`
 border: 5px dotted #20C8DD;
 padding: 2%;
-background-color: #7681A5;
-padding: 3%;
-
 align-items:center;
+margin: 2%;
 
 `;
   return (
@@ -23,7 +21,9 @@ align-items:center;
     <Router>
     <HomeDec>
     <Link to="/">Home</Link>
-    <Link to="/recipecard"> recipe card</Link>
+    <Link to="/recipecard"> Add Recipe</Link>
+    <a href="https://marketing-page.netlify.app/"> Marketing</a>
+
     </HomeDec>
    
     <Route exact path="/">
@@ -33,7 +33,6 @@ align-items:center;
     <Route exact path="/recipecard">
     <RecipeCard/>
     </Route>
-    
     </Router>
   </header>
   )
