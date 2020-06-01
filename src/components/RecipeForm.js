@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../index.css";
-import api from "../utils/api";
+// import api from "../utils/api";
 import NavBar from "./NavBar";
 import axios from "axios";
 
@@ -35,7 +35,7 @@ export default class RecipeForm extends Component {
       )
       .then((res) => {
         console.log("Res is: ", res);
-        // this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard");
       })
       .catch((err) => console.log("Error is: ", err.response));
   };
@@ -99,4 +99,3 @@ export default class RecipeForm extends Component {
     );
   }
 }
-

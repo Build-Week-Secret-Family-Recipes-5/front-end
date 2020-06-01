@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
-import styled from 'styled-components';
-import logo from '../images/recipe.png';
-import { getToken } from '../utils/api';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
+import styled from "styled-components";
+import logo from "../images/recipe.png";
+import { getToken } from "../utils/axiosWithAuth";
 
 const NavDiv = styled.div`
   margin-top: 2%;
@@ -20,7 +20,7 @@ const BottonsDiv = styled.div`
 
 export default function NavBar(props) {
   const signedIn = getToken();
-  const id = localStorage.getItem('id');
+  // const id = localStorage.getItem('id');
   return (
     <div>
       <NavDiv>
@@ -31,23 +31,21 @@ export default function NavBar(props) {
           </h4>
         </LogoDiv>
         <BottonsDiv>
-          {' '}
-          {/* &nbsp Give spaces between buttons */}
           <Button color="secondary">
             <Link to="/" className="NavButtons">
               Home
             </Link>
           </Button>
           &nbsp;&nbsp;&nbsp;
-          {/* <Button color="secondary">
-            <Link to="/organization" className="NavButtons">
-              Add/Edit/Delete Recipes
-            </Link>
-          </Button>
-          &nbsp;&nbsp;&nbsp; */}
           <Button color="secondary">
             <Link to="/recipeDashboard" className="NavButtons">
-            Dashboard
+              Visitor Dashboard
+            </Link>
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button color="secondary">
+            <Link to="/dashboard" className="NavButtons">
+              User Dashboard
             </Link>
           </Button>
           &nbsp;&nbsp;&nbsp;

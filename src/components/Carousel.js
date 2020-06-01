@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
   Carousel,
@@ -6,30 +6,29 @@ import {
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-} from 'reactstrap';
+} from "reactstrap";
 
 const items = [
   {
     src:
-      'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-    altText: 'Families:',
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+    altText: "Families:",
     caption:
-      'With our APP, You can choose from several family recipes for parents and restaurants!',
+      "With our APP, You can choose from several family recipes for parents and restaurants!",
   },
 
   {
     src:
-      'https://images.unsplash.com/photo-1512003867696-6d5ce6835040?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-    altText: 'Restaurants:',
-    caption:
-      'With our APP, you can now list, edit, and update your recipes!',
+      "https://images.unsplash.com/photo-1512003867696-6d5ce6835040?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+    altText: "Restaurants:",
+    caption: "With our APP, you can now list, edit, and update your recipes!",
   },
 
   {
     src:
-      'https://images.unsplash.com/photo-1559100644-59dad675d48d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-    altText: ' Do not waste this opportunity',
-    caption: 'Make your recipe today!',
+      "https://images.unsplash.com/photo-1559100644-59dad675d48d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+    altText: " Do not waste this opportunity",
+    caption: "Make your recipe today!",
   },
 ];
 
@@ -49,12 +48,12 @@ export default function CarouselComponent() {
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = newIndex => {
+  const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
 
-  const slides = items.map(item => {
+  const slides = items.map((item) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}

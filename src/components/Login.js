@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Field, withFormik } from 'formik';
-import { Link } from 'react-router-dom';
-import * as Yup from 'yup';
-import NavBar from './NavBar';
-import '../index.css';
-import api from '../utils/api';
+import React, { useState, useEffect } from "react";
+import { Form, Field, withFormik } from "formik";
+import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import NavBar from "./NavBar";
+import "../index.css";
+import api from "../utils/axiosWithAuth";
 
 const LoginForm = ({ errors, touched, values, status }) => {
   const [signInUser, setSignInUser] = useState([]);
@@ -62,32 +62,29 @@ const LoginForm = ({ errors, touched, values, status }) => {
 const FormikLoginForm = withFormik({
   mapPropsToValues({ signInUser }) {
     return {
-      username: signInUser || '',
-      password: '',
-      
+      username: signInUser || "",
+      password: "",
     };
   },
 
   validationSchema: Yup.object().shape({
-    username: Yup.string().required('*Please enter your username!!'),
-    password: Yup.string().required('*Please enter your password!!'),
+    username: Yup.string().required("*Please enter your username!!"),
+    password: Yup.string().required("*Please enter your password!!"),
   }),
 
   handleSubmit(values, { setStatus, resetForm, props }) {
-    console.log('Submitting form', values);
+    console.log("Submitting form", values);
     api()
-      .post('/api/auth/login', values)
-      .then(res => {
-        console.log('Success:', res);
+      .post("/api/auth/login", values)
+      .then((res) => {
+        console.log("Success:", res);
         setStatus(res.data);
         resetForm();
-        localStorage.setItem('token', res.data.token);
-        // localStorage.setItem('id', res.data.id);
-        // localStorage.setItem('org_id', res.data.user.org_id);
-        props.history.push('/dashboard');
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/dashboard");
       })
-      .catch(err => {
-        console.log('Error:', err.response);
+      .catch((err) => {
+        console.log("Error:", err.response);
       });
   },
 })(LoginForm);

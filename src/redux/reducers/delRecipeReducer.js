@@ -1,24 +1,17 @@
 const initialState = {
   isFetching: false,
   isAdding: false,
-  favRecipes: [],
   isDeleteing: false,
 };
 
-export const supporterReducer = (state = initialState, action) => {
+export const delRecipeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCHING_DATA':
+    case 'FETCHING_RECIPES':
       return {
         ...state,
         isFetching: true,
       };
-    case 'FETCHING_SUCCESSFUL':
-      return {
-        ...state,
-        isFetching: false,
-        favRecipes: action.payload.favorite_recipes,
-      };
-    case 'DELETING_DATA':
+    case 'DELETING_RECIPES':
       return {
         ...state,
         isDeleteing: true,

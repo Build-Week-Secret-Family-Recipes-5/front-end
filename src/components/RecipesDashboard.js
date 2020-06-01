@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axiosWithAuth from "../utils/api";
+import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import NavBar from "./NavBar";
 
 function RecipeCard(props) {
@@ -15,8 +15,6 @@ function RecipeCard(props) {
         setRecipes(res.data);
       });
   }, []);
-
-  
 
   const StyledH2 = styled.h2`
     margin-left: 5%;

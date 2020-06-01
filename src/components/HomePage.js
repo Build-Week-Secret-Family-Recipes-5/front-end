@@ -1,17 +1,16 @@
-import React from 'react';
-import NavBar from './NavBar';
-import styled from 'styled-components';
-import Carousel from './Carousel';
+import React from "react";
+import NavBar from "./NavBar";
+import styled from "styled-components";
+import Carousel from "./Carousel";
 import {
   Card,
   CardImg,
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle,
   Button,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
 const SuperSignUpDiv = styled.div`
   display: flex;
@@ -50,9 +49,8 @@ export default function HomePage() {
                 <strong>Features:</strong>
               </CardSubtitle> */}
               <CardText>
-                Families can view all posted recipes, and filter by
-                title, category, and as well as choose their favorite
-                ones!
+                Families can view all posted recipes, and filter by title,
+                category, and as well as choose their favorite ones!
               </CardText>
               <Button className="joseSbuttonCard" color="info">
                 <Link to="/signUp" className="NavButtons">

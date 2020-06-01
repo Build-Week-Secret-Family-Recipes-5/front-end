@@ -1,9 +1,9 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { Redirect } from "react-router-dom";
 
 function Logout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('id');
+  localStorage.removeItem("token");
+  localStorage.removeItem("id");
   return <Redirect to="/login" />;
 }
 

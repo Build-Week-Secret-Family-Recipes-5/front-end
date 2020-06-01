@@ -1,7 +1,7 @@
 import {
-  FETCH_USER_ITEMS_START,
-  FETCH_USER_ITEMS_SUCCESS,
-  FETCH_USER_ITEMS_ERROR,
+  FETCH_RECIPES_START,
+  FETCH_RECIPES_SUCCESS,
+  FETCH_RECIPES_ERROR,
 } from '../actions/getRecipesActions';
 
 const initialState = {
@@ -14,26 +14,26 @@ const initialState = {
       ingredients: '',
       instructions: '',
       category: '',
-      photo_url: '',
+      photo: '',
     },
   ],
   error: null,
 };
 
-export const orgReducer = (state = initialState, action) => {
+export const getRecipesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USER_ITEMS_START:
+    case FETCH_RECIPES_START:
       return {
         ...state,
         isLoading: true,
       };
-    case FETCH_USER_ITEMS_SUCCESS:
+    case FETCH_RECIPES_SUCCESS:
       return {
         ...state,
         isLoading: false,
         recipes: action.payload,
       };
-    case FETCH_USER_ITEMS_ERROR:
+    case FETCH_RECIPES_ERROR:
       return {
         ...state,
         error: action.payload,

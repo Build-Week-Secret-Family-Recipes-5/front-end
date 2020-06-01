@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function signingUp(username, email, password, terms) {
+export function signingUp(username, email, password) {
   return dispatch => {
     dispatch({ type: 'SIGNINGUP_START' });
 
@@ -9,7 +9,7 @@ export function signingUp(username, email, password, terms) {
         username,
         password,
         email,
-        terms,
+        // terms,
       })
       .then(res => {
         localStorage.setItem('token', res.data.token);

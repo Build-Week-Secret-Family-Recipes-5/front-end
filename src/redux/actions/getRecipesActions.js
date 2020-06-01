@@ -1,22 +1,22 @@
-import api from '../../utils/api';
+import api from "../../utils/axiosWithAuth";
 
-//FETCHING A CAMPAIGN FOR INDIVIDUAL Organizations
+//FETCHING A recipe
 
-export const FETCH_USER_ITEMS_START = 'FETCH_USER_ITEMS_START';
-export const FETCH_USER_ITEMS_SUCCESS = 'FETCH_USER_ITEMS_SUCCESS';
-export const FETCH_USER_ITEMS_ERROR = 'FETCH_USER_ITEMS_ERROR';
+export const FETCH_RECIPES_START = "FETCH_RECIPES_START";
+export const FETCH_RECIPES_SUCCESS = "FETCH_RECIPES_SUCCESS";
+export const FETCH_RECIPES_ERROR = "FETCH_RECIPES_ERROR";
 
 export const getRecipes = () => {
-  return dispatch => {
-    dispatch({ type: FETCH_USER_ITEMS_START });
+  return (dispatch) => {
+    dispatch({ type: FETCH_RECIPES_START });
 
     api()
-      .get(`/api/getrecipes/${localStorage.getItem('recipe_id')}`)
-      .then(res => {
-        console.log('coming from actions', res.data);
+      .get(`/api/recipes/${localStorage.getItem("recipe")}`)
+      .then((res) => {
+        console.log("coming from actions", res.data);
         dispatch({
-          type: FETCH_USER_ITEMS_SUCCESS,
-          payload: res.data.map(data => {
+          type: FETCH_RECIPES_SUCCESS,
+          payload: res.data.map((data) => {
             return {
               id: data.id,
               title: data.title,
@@ -24,15 +24,13 @@ export const getRecipes = () => {
               ingredients: data.ingredients,
               instructions: data.instructions,
               category: data.category,
-              photo_url: data.photo_url,
-              recipe_id: data.recipe_id,
-              org_name: data.recipe_name,
+              photo: data.photo,
             };
           }),
         });
       })
-      .catch(err => {
-        dispatch({ type: FETCH_USER_ITEMS_ERROR, payload: err.error });
+      .catch((err) => {
+        dispatch({ type: FETCH_RECIPES_ERROR, payload: err.error });
       });
   };
 };

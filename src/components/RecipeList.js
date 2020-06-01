@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axiosWithAuth from "../utils/api";
+import axiosWithAuth from "../utils/axiosWithAuth";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
-import axios from 'axios';
 
 function RecipeCard(props) {
   // console.log('friends props: ', props)
@@ -22,10 +21,9 @@ function RecipeCard(props) {
     axiosWithAuth()
       .delete(`/api/recipes/${id}`)
       .then((res) => console.log(res))
-      .catch((err) => console.log("delete error ", err))
+      .catch((err) => console.log("delete error ", err));
     //   .finally(() => window.location.reload());
   }
-
 
   return (
     <RecipesContainer>

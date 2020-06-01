@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Field, withFormik } from 'formik';
-import { Link } from 'react-router-dom';
-import * as Yup from 'yup';
-import NavBar from './NavBar';
-import '../index.css';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Form, Field, withFormik } from "formik";
+import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import NavBar from "./NavBar";
+import "../index.css";
+import axios from "axios";
 
 const SignupForm = ({ errors, touched, values, status }) => {
   const [supUsers, setSupUsers] = useState([]);
@@ -41,26 +41,6 @@ const SignupForm = ({ errors, touched, values, status }) => {
               placeholder="email address"
               value={values.email}
             />
-            {/* <label className="signup-checkbox-box">
-              <h4 className="signup-checkbox-title">
-                I agree to all statements in terms of service
-              </h4>
-              <Field
-                className="signup-checkbox"
-                type="checkbox"
-                name="terms"
-                checked={values.terms}
-              />
-            </label> */}
-            {/* {values.terms && (
-              <Field
-                className="fnu-signup-input"
-                type="number"
-                name="org_id"
-                placeholder="organization id"
-                value={values.org_id}
-              />
-            )} */}
           </div>
           <div>
             <button className="signup-create-button">Sign up</button>
@@ -92,37 +72,39 @@ const SignupForm = ({ errors, touched, values, status }) => {
 const FormikSignupForm = withFormik({
   mapPropsToValues({ supUsers }) {
     return {
-      username: supUsers || '',
-      email: '',
-      password: '',
+      username: supUsers || "",
+      email: "",
+      password: "",
       // terms: false,
-      
     };
   },
 
   validationSchema: Yup.object().shape({
-    username: Yup.string().required('*Please enter your username!!'),
-    email: Yup.string().required('*Please enter your password!!'),
-    password: Yup.string().required('*Please enter your email address!!'),
+    username: Yup.string().required("*Please enter your username!!"),
+    email: Yup.string().required("*Please enter your password!!"),
+    password: Yup.string().required("*Please enter your email address!!"),
     // terms: Yup.bool(),
   }),
 
   handleSubmit(values, { setStatus, resetForm, props }) {
-    if(values.username && values.password && values.email) {
+    if (values.username && values.password && values.email) {
       axios
-        .post('https://back-end-build-weeks.herokuapp.com/api/auth/register', values)
-        .then(res => {
-          console.log('Success:', res);
+        .post(
+          "https://back-end-build-weeks.herokuapp.com/api/auth/register",
+          values
+        )
+        .then((res) => {
+          console.log("Success:", res);
           setStatus(res.data);
           resetForm();
-          localStorage.setItem('token', res.data.token);
-          props.history.push('/login');
+          localStorage.setItem("token", res.data.token);
+          props.history.push("/login");
         })
-        .catch(err => {
-          console.log('Error:', err.response);
+        .catch((err) => {
+          console.log("Error:", err.response);
         });
-    } 
-    console.log('Submitting form', values);
+    }
+    console.log("Submitting form", values);
   },
 })(SignupForm);
 
