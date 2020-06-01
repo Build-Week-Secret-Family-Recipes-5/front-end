@@ -39,14 +39,14 @@ export default function NavBar(props) {
             </Link>
           </Button>
           &nbsp;&nbsp;&nbsp;
-          <Button color="secondary">
+          {/* <Button color="secondary">
             <Link to="/organization" className="NavButtons">
               Add/Edit/Delete Recipes
             </Link>
           </Button>
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; */}
           <Button color="secondary">
-            <Link to="/organizationTwo" className="NavButtons">
+            <Link to="/recipeDashboard" className="NavButtons">
             Dashboard
             </Link>
           </Button>

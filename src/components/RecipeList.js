@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosWithAuth from "../utils/api";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
-import NavBar from "./NavBar";
+import axios from 'axios';
 
 function RecipeCard(props) {
   // console.log('friends props: ', props)
@@ -16,26 +16,20 @@ function RecipeCard(props) {
       });
   }, []);
 
-  
+  function deleteRecipe(e, id) {
+    e.preventDefault();
+    console.log("deleting");
+    axiosWithAuth()
+      .delete(`/api/recipes/${id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log("delete error ", err))
+    //   .finally(() => window.location.reload());
+  }
 
-  const StyledH2 = styled.h2`
-    margin-left: 5%;
-  `;
-
-  const StyledH1 = styled.h1`
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: #00cccc;
-    // margin: 0 0 24px;
-    margin-left: 2%;
-    margin-bottom: 2%;
-  `;
 
   return (
     <RecipesContainer>
-      <NavBar />
-      <StyledH1>Welcome to your Dashboard</StyledH1>
-      <StyledH2>You can view recipes!</StyledH2>
+      <h2>Your Recipes</h2>
       {recipes
         ? recipes.map((recipe) => (
             <RecipeContainer key={recipe.id}>
@@ -50,6 +44,13 @@ function RecipeCard(props) {
                 <br />
                 {recipe.category}
               </p>
+              <Button
+                onClick={(e) => deleteRecipe(e, recipe.id)}
+                variant="contained"
+                color="primary"
+              >
+                delete
+              </Button>
             </RecipeContainer>
           ))
         : "loading"}
@@ -59,6 +60,7 @@ function RecipeCard(props) {
 
 const RecipesContainer = styled.div`
   position: relative;
+  top: 20px;
 `;
 
 const RecipeContainer = styled.div`

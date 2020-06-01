@@ -9,7 +9,6 @@ import Login from './components/Login';
 import RecipeForm from './components/RecipeForm';
 import ProtectedRoute from './utils/PrivateRoute';
 import Logout from './components/LogOut';
-import RecipeDashboardTwoCard from './components/RecipeDashboardTwoCard';
 
 function App() {
   return (
@@ -24,10 +23,7 @@ function App() {
         path="/dashboard"
         component={Dashboard}
       />
-      <ProtectedRoute
-        path="/recipedashcard/:id"
-        component={RecipeDashboardTwoCard}
-      />
+      
     </div>
   );
 }

@@ -3,22 +3,25 @@ import NavBar from './NavBar';
 import '../index.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import RecipeList from './RecipeList';
 
 const Dashboard = () => {
-  const [recipes, setRecipes] = useState([]);
-  // let {id} = useParams();
 
-  useEffect(() => {
-    axios
-      .get(`https://back-end-build-weeks.herokuapp.com/api/recipes`)
-      .then(res => {
-        setRecipes(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-  console.log(recipes);
+  
+  // const [recipes, setRecipes] = useState([]);
+  // // let {id} = useParams();
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://back-end-build-weeks.herokuapp.com/api/recipes`)
+  //     .then(res => {
+  //       setRecipes(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  // console.log(recipes);
 
   return (
     <>
@@ -28,11 +31,12 @@ const Dashboard = () => {
           <button className="dash-button">Add A New Recipe</button>
         </Link>
       </div>
-      <div className="recipes-box">
+      <RecipeList />
+      {/* <div className="recipes-box">
         {recipes.map(recipe => {
           return <RecipesList recipe={recipe} />;
         })}
-      </div>
+      </div> */}
     </>
   );
 };
@@ -44,11 +48,11 @@ const RecipesList = ({ recipe }) => {
     ingredients,
     instructions,
     category,
-    photo_url,
+    // photo_url,
   } = recipe;
   return (
     <div >
-      <img src={photo_url} />
+      {/* <img src={photo_url} /> */}
       <h1>Recipe Name: {title}</h1>
       <h3>
         Title: {title}

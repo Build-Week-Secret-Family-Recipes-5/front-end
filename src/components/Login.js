@@ -31,7 +31,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
             />
             <Field
               className="my-input"
-              type="text"
+              type="password"
               name="password"
               placeholder="password"
               value={values.password}
@@ -84,7 +84,7 @@ const FormikLoginForm = withFormik({
         localStorage.setItem('token', res.data.token);
         // localStorage.setItem('id', res.data.id);
         // localStorage.setItem('org_id', res.data.user.org_id);
-        props.history.push('/recipeDashboard');
+        props.history.push('/dashboard');
       })
       .catch(err => {
         console.log('Error:', err.response);

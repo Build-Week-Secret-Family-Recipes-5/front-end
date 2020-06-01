@@ -1,122 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Field, withFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import '../index.css'
-import api from '../utils/api';
-import NavBar from './NavBar';
+import React, { Component } from "react";
+import "../index.css";
+import api from "../utils/api";
+import NavBar from "./NavBar";
+import axios from "axios";
 
-function RecipeForm({ errors, touched, values, status }) {
-  const [recipes, setRecipes] = useState([]);
+export default class RecipeForm extends Component {
+  state = {
+    newRecipe: {
+      title: "",
+      source: "",
+      ingredients: "",
+      instructions: "",
+      category: "",
+      photo: "",
+    },
+  };
 
-  useEffect(() => {
-    status && setRecipes(() => [...recipes, status]);
-    console.log(recipes);
-  }, [status]);
+  handleChange = (e) => {
+    this.setState({
+      newRecipe: {
+        ...this.state.newRecipe,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
 
-  return (
-    <div>
-      {/* <NavBar /> */}
-      <div className="trevor-form-container">
-        <Form className="trevor-form">
-          <h1>Create new Recipe!</h1>
-          <Field
+  addRecipe = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        "https://back-end-build-weeks.herokuapp.com/api/recipes",
+        this.state.newRecipe
+      )
+      .then((res) => {
+        console.log("Res is: ", res);
+        // this.props.history.push("/dashboard");
+      })
+      .catch((err) => console.log("Error is: ", err.response));
+  };
+
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <form onSubmit={this.addRecipe}>
+          <input
             type="text"
             name="title"
-            placeholder="Recipe Title"
-            value={values.title}
-            className="trevor-input"
+            placeholder="Title"
+            value={this.state.newRecipe.title}
+            onChange={this.handleChange}
           />
-          {touched.title && errors.title && <p>{errors.title}</p>}
-
-          <Field
+          <div />
+          <input
             type="text"
             name="source"
-            placeholder="Recipe Source"
-            value={values.source}
-            className="trevor-input"
+            placeholder="Source"
+            value={this.state.newRecipe.source}
+            onChange={this.handleChange}
           />
-          {touched.source && errors.source && (
-            <p>{errors.source}</p>
-          )}
-
-          <Field
-            type="textarea"
+          <div />
+          <input
+            type="text"
             name="ingredients"
             placeholder="Ingredients"
-            value={values.ingredients}
-            className="trevor-input"
+            value={this.state.newRecipe.ingredients}
+            onChange={this.handleChange}
           />
-          {touched.ingredients && errors.ingredients && <p>{errors.ingredients}</p>}
-
-          <Field
-            type="textarea"
-            name="Instructions"
-            placeholder="Instructions"
-            value={values.instructions}
-            className="trevor-input"
-          />
-
-          {touched.instructions && errors.instructions && <p>{errors.instructions}</p>}
-
-          <Field
+          <div />
+          <input
             type="text"
-            name="categories"
-            placeholder="Categories"
-            value={values.category}
-            className="trevor-input"
+            name="instructions"
+            placeholder="Instructions"
+            value={this.state.newRecipe.instructions}
+            onChange={this.handleChange}
           />
-          {touched.category && errors.category && (
-            <p>{errors.category}</p>
-          )}
-          <button className="trevor-button" type="submit">
-            Add Recipe
-          </button>
-        </Form>
+          <div />
+          <input
+            type="text"
+            name="category"
+            placeholder="Category"
+            value={this.state.newRecipe.category}
+            onChange={this.handleChange}
+          />
+          <div />
+          <input
+            type="text"
+            name="photo"
+            placeholder="Photo"
+            value={this.state.newRecipe.photo}
+            onChange={this.handleChange}
+          />
+          <div />
+          <button type="submit">Add Recipe</button>
+        </form>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-const FormikRecipeForm = withFormik({
-  mapPropsToValues({ recipes }) {
-    return {
-      title: recipes || '',
-      source: '',
-      ingredients: '',
-      instructions: '',
-      category: '',
-      photo_url:
-        'https://images.unsplash.com/photo-1516865131505-4dabf2efc692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3580&q=80',
-    };
-  },
-
-  validationSchema: Yup.object().shape({
-    title: Yup.string().required('Please fill this out!'),
-    source: Yup.string().required('Please fill this out!'),
-    ingredients: Yup.string().required('Please fill this out!'),
-    instructions: Yup.string().required('Please fill this out!'),
-    category: Yup.string()
-      .oneOf([
-        'Breakfast',
-        'Lunch',
-        'Dinner',
-      ])
-      .required('Please Choose an option'),
-  }),
-
-  handleSubmit(values, { setStatus, resetForm }) {
-    console.log('Submitting form: ', values);
-
-    api()
-      .post('/api/recipes', values)
-      .then((response) => {
-        console.log('Success:', response);
-        setStatus(response.data);
-        resetForm();
-        window.location.reload();
-      })
-      .catch((error) => console.log('Error:', error));
-  },
-})(RecipeForm);
-export default FormikRecipeForm;
