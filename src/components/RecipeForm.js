@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../index.css";
-// import api from "../utils/api";
 import NavBar from "./NavBar";
 import axios from "axios";
+import { TextField, Button } from "@material-ui/core";
 
 export default class RecipeForm extends Component {
   state = {
@@ -38,14 +38,15 @@ export default class RecipeForm extends Component {
         this.props.history.push("/dashboard");
       })
       .catch((err) => console.log("Error is: ", err.response));
+    // .finally(window.location.reaload());
   };
 
   render() {
     return (
       <div>
         <NavBar />
-        <form onSubmit={this.addRecipe}>
-          <input
+        <form onSubmit={this.addRecipe} style={{ margin: "70px" }}>
+          <TextField
             type="text"
             name="title"
             placeholder="Title"
@@ -53,7 +54,7 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <input
+          <TextField
             type="text"
             name="source"
             placeholder="Source"
@@ -61,7 +62,7 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <input
+          <TextField
             type="text"
             name="ingredients"
             placeholder="Ingredients"
@@ -69,7 +70,7 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <input
+          <TextField
             type="text"
             name="instructions"
             placeholder="Instructions"
@@ -77,7 +78,7 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <input
+          <TextField
             type="text"
             name="category"
             placeholder="Category"
@@ -85,7 +86,7 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <input
+          <TextField
             type="text"
             name="photo"
             placeholder="Photo"
@@ -93,7 +94,14 @@ export default class RecipeForm extends Component {
             onChange={this.handleChange}
           />
           <div />
-          <button type="submit">Add Recipe</button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ margin: "20px" }}
+          >
+            Add Recipe
+          </Button>
         </form>
       </div>
     );
